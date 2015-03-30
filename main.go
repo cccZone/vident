@@ -1,7 +1,6 @@
 package main
 
 import (
-       "fmt"
        "io/ioutil"
 )
 
@@ -15,6 +14,14 @@ func readFile(fileName string) string {
 }
 
 func main() {
+     // read the file contents
      file_contents := readFile("test.vi")
-     fmt.Printf("%s\n", file_contents)
+
+     var eof byte = 0
+     file_contents += string(eof)
+
+     // load up our lexer
+     lexer := &Lexer {}
+     lexer.createLexer(file_contents)
+     lexer.startLexing()
 }
